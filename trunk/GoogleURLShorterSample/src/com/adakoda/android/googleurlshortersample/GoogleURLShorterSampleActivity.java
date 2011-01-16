@@ -24,43 +24,43 @@ public class GoogleURLShorterSampleActivity extends Activity {
 		setContentView(R.layout.main);
 
 		String apiUri = "https://www.googleapis.com/urlshortener/v1/url";
-		// ˆÈ‰º‚Ì API Key ‚ğæ“¾‚µ‚½‚à‚Ì‚É’u‚«Š·‚¦‚éiÈ—ª‰Âj
+		// ä»¥ä¸‹ã® API Key ã‚’å–å¾—ã—ãŸã‚‚ã®ã«ç½®ãæ›ãˆã‚‹ï¼ˆçœç•¥å¯ï¼‰
 		String apiKey = "";
-		String postUrl = ""; // POST—pURL•¶š—ñ
+		String postUrl = ""; // POSTç”¨URLæ–‡å­—åˆ—
 
-		// ’ZkŒ³URL•¶š—ñ
+		// çŸ­ç¸®å…ƒURLæ–‡å­—åˆ—
 		String longUrl = "http://www.adakoda.com/";
 
-		// ƒpƒ‰ƒ[ƒ^[‚É“ú–{Œê‚ğŠÜ‚Şê‡‚Í‰º‹L‚Ì‚æ‚¤‚ÉƒGƒXƒP[ƒv‚µ‚Ä‚­‚¾‚³‚¢
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã«æ—¥æœ¬èªã‚’å«ã‚€å ´åˆã¯ä¸‹è¨˜ã®ã‚ˆã†ã«ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã—ã¦ãã ã•ã„
 		// Uri.Builder tmpUriBuilder = new Uri.Builder();
 		// tmpUriBuilder("http://www.google.co.jp/search");
-		// tmpUriBuilder.appendQueryParameter("q", Uri.encode("‚İ‚Á‚­‚İ‚­"));
+		// tmpUriBuilder.appendQueryParameter("q", Uri.encode("ã¿ã£ãã¿ã"));
 		// longUrl = Uri.decode(tmpUriBuilder.build().toString());
 
-		// POST—pURL•¶š—ñì¬
+		// POSTç”¨URLæ–‡å­—åˆ—ä½œæˆ
 		Uri.Builder uriBuilder = new Uri.Builder();
 		uriBuilder.path(apiUri);
-		uriBuilder.appendQueryParameter("key", apiKey); // APIƒL[„§
+		uriBuilder.appendQueryParameter("key", apiKey); // APIã‚­ãƒ¼æ¨å¥¨
 		postUrl = Uri.decode(uriBuilder.build().toString());
 
 		try {
-			// ƒŠƒNƒGƒXƒgì¬
+			// ãƒªã‚¯ã‚¨ã‚¹ãƒˆä½œæˆ
 			HttpPost httpPost = new HttpPost(postUrl);
 			httpPost.setHeader("Content-type", "application/json");
 			JSONObject jsonRequest = new JSONObject();
 			jsonRequest.put("longUrl", longUrl);
 			StringEntity stringEntity = new StringEntity(jsonRequest.toString());
 			httpPost.setEntity(stringEntity);
-			// ƒŠƒNƒGƒXƒg”­s
+			// ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
 			DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
 			HttpResponse httpResponse = defaultHttpClient.execute(httpPost);
 			int statusCode = httpResponse.getStatusLine().getStatusCode();
 			if (statusCode == HttpStatus.SC_OK) {
-				// Œ‹‰Ê‚Ìæ“¾
+				// çµæœã®å–å¾—
 				String entity = EntityUtils.toString(httpResponse.getEntity());
 				JSONObject jsonEntity = new JSONObject(entity);
 				if (jsonEntity != null) {
-					// ’ZkURLŒ‹‰Ê i‚±‚ÌƒTƒ“ƒvƒ‹‚Ìê‡Auhttp://goo.gl/sGdKvj
+					// çŸ­ç¸®URLçµæœ ï¼ˆã“ã®ã‚µãƒ³ãƒ—ãƒ«ã®å ´åˆã€ã€Œhttp://goo.gl/sGdKã€ï¼‰
 					String shortUrl = jsonEntity.optString("id");
 					Log.v("id", shortUrl);
 					Toast.makeText(this, shortUrl, Toast.LENGTH_LONG).show();
