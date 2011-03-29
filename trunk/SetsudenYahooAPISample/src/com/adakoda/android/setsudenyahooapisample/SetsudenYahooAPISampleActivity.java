@@ -11,7 +11,7 @@ import com.adakoda.android.yahoo.setsuden.SetsudenClient;
 public class SetsudenYahooAPISampleActivity extends Activity {
 
 	private static final String TAG = "SetsudenYahooAPISampleActivity";
-	private static final String MY_APP_ID = "XXXXXXXXXX"; // TODO:Pleas put your app id
+	private static final String MY_APP_ID = "XXXXXXXXXX"; // TODO:Please put your app id
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
