@@ -1,10 +1,10 @@
 // Copyright 2010 Google Inc. All Rights Reserved.
 
-package com.example.dungeons;
+package com.adakoda.android.adakodainappbillingsample;
 
-import com.example.dungeons.Consts.PurchaseState;
-import com.example.dungeons.util.Base64;
-import com.example.dungeons.util.Base64DecoderException;
+import com.adakoda.android.adakodainappbillingsample.Consts.PurchaseState;
+import com.adakoda.android.adakodainappbillingsample.util.Base64;
+import com.adakoda.android.adakodainappbillingsample.util.Base64DecoderException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -124,7 +124,7 @@ public class Security {
              * Generally, encryption keys / passwords should only be kept in memory
              * long enough to perform the operation they need to perform.
              */
-            String base64EncodedPublicKey = "your public key here";
+            String base64EncodedPublicKey = MyPublicKey.PUBLIC_KEY; // Changed
             PublicKey key = Security.generatePublicKey(base64EncodedPublicKey);
             verified = Security.verify(key, signedData, signature);
             if (!verified) {

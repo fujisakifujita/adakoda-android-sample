@@ -1,11 +1,11 @@
 // Copyright 2010 Google Inc. All Rights Reserved.
 
-package com.example.dungeons;
+package com.adakoda.android.adakodainappbillingsample;
 
-import com.example.dungeons.BillingService.RequestPurchase;
-import com.example.dungeons.BillingService.RestoreTransactions;
-import com.example.dungeons.Consts.PurchaseState;
-import com.example.dungeons.Consts.ResponseCode;
+import com.adakoda.android.adakodainappbillingsample.BillingService.RequestPurchase;
+import com.adakoda.android.adakodainappbillingsample.BillingService.RestoreTransactions;
+import com.adakoda.android.adakodainappbillingsample.Consts.PurchaseState;
+import com.adakoda.android.adakodainappbillingsample.Consts.ResponseCode;
 
 import android.app.PendingIntent;
 import android.content.Context;

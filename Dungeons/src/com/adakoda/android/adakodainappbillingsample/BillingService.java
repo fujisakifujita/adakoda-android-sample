@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.dungeons;
+package com.adakoda.android.adakodainappbillingsample;
 
+import com.adakoda.android.adakodainappbillingsample.Consts.PurchaseState;
+import com.adakoda.android.adakodainappbillingsample.Consts.ResponseCode;
+import com.adakoda.android.adakodainappbillingsample.Security.VerifiedPurchase;
 import com.android.vending.billing.IMarketBillingService;
 
-import com.example.dungeons.Consts.PurchaseState;
-import com.example.dungeons.Consts.ResponseCode;
-import com.example.dungeons.Security.VerifiedPurchase;
 
 import android.app.PendingIntent;
 import android.app.Service;

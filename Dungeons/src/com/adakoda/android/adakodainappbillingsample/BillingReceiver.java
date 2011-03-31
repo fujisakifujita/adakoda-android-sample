@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.dungeons;
+package com.adakoda.android.adakodainappbillingsample;
 
-import com.example.dungeons.Consts.ResponseCode;
+import com.adakoda.android.adakodainappbillingsample.Consts.ResponseCode;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

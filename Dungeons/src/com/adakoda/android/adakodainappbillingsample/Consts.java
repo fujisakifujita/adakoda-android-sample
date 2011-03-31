@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.dungeons;
+package com.adakoda.android.adakodainappbillingsample;
 
 /**
  * This class holds global constants that are used throughout the application
