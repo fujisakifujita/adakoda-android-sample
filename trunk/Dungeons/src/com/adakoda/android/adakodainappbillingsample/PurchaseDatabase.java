@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.dungeons;
+package com.adakoda.android.adakodainappbillingsample;
 
-import com.example.dungeons.Consts.PurchaseState;
+import com.adakoda.android.adakodainappbillingsample.Consts.PurchaseState;
 
 import android.content.ContentValues;
 import android.content.Context;
