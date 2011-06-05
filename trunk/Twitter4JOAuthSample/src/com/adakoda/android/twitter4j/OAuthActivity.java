@@ -19,16 +19,17 @@ import android.webkit.WebViewClient;
 
 public class OAuthActivity extends Activity {
 
+	// Activity開始時のインテントパラメータ
 	public static final String CALLBACK = "callback";
 	public static final String CONSUMER_KEY = "consumer_key";
 	public static final String CONSUMER_SECRET = "consumer_secret";
 
+	// Activity終了時のインテントパラメータ
 	public static final String USER_ID = "user_id";
 	public static final String SCREEN_NAME = "screen_name";
 	public static final String TOKEN = "token";
 	public static final String TOKEN_SECRET = "token_secret";
 
-	private static final String OAUTH_TOKEN = "oauth_token";
 	private static final String OAUTH_VERIFIER = "oauth_verifier";
 	
 	private WebView mWebView;
@@ -40,9 +41,11 @@ public class OAuthActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setResult(Activity.RESULT_CANCELED);
 
+		// プログレス表示
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
+		// Viewのセットアップ
 		mWebView = new WebView(this);
 		WebSettings webSettings = mWebView.getSettings();
 		webSettings.setSavePassword(false);
@@ -50,6 +53,7 @@ public class OAuthActivity extends Activity {
 		mWebView.setWebViewClient(mWebViewClient);
 		setContentView(mWebView);
 
+		// TwitterのOAuth認証画面で毎回ユーザ名、アカウントを入力させるために必要
 		CookieManager cookieManager = CookieManager.getInstance();
 		cookieManager.setAcceptCookie(false);
 
@@ -69,6 +73,7 @@ public class OAuthActivity extends Activity {
 		preTask.execute();
 	}
 
+	// 前処理
 	public class PreTask extends AsyncTask<Void, Void, String> {
 
 		@Override
@@ -81,6 +86,7 @@ public class OAuthActivity extends Activity {
 		protected String doInBackground(Void... params) {
 			String authorizationUrl = null;
 			try {
+				// 非同期処理が必要なメソッドの呼び出し
 				RequestToken requestToken = mTwitter.getOAuthRequestToken();
 				if (requestToken != null) {
 					authorizationUrl = requestToken.getAuthorizationURL();
@@ -116,13 +122,13 @@ public class OAuthActivity extends Activity {
 
 	private WebViewClient mWebViewClient = new WebViewClient() {
 
+		// 特定のページをフック
 		@Override
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
 			boolean result = true;
 			if ((url != null) && (url.startsWith(mCallback))) {
 				Uri uri = Uri.parse(url);
-				String oAuthVerifier = uri
-						.getQueryParameter(OAUTH_VERIFIER);
+				String oAuthVerifier = uri.getQueryParameter(OAUTH_VERIFIER);
 				PostTask postTask = new PostTask();
 				postTask.execute(oAuthVerifier);
 			} else {
@@ -133,6 +139,7 @@ public class OAuthActivity extends Activity {
 
 	};
 
+	// 後処理
 	public class PostTask extends AsyncTask<String, Void, AccessToken> {
 
 		@Override
@@ -146,6 +153,7 @@ public class OAuthActivity extends Activity {
 			AccessToken accessToken = null;
 			if (params != null) {
 				try {
+					// 非同期処理が必要なメソッドの呼び出し
 					accessToken = mTwitter.getOAuthAccessToken(params[0]);
 				} catch (TwitterException e) {
 					e.printStackTrace();
